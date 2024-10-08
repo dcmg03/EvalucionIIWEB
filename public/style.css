@@ -1,0 +1,27 @@
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    margin: 20px;
+}
+
+form {
+    margin: 10px 0;
+}
+
+input {
+    padding: 10px;
+    margin-right: 10px;
+}
+
+button {
+    padding: 10px;
+}
+
+ul {
+    list-style-type: none;
+}
+
+li {
+    margin: 5px 0;
+    font-size: 18px;
+}
