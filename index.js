@@ -17,9 +17,10 @@ app.get('/', (req, res) => {
 app.get('/all', async (req, res) => {
     try {
         const response = await axios.get('https://starwars-n5ec-developuptcs-projects.vercel.app/');
+        console.log("Todos los personajes obtenidos:", response.data); // Depuración
         res.render('index', { data: response.data, message: null });
     } catch (error) {
-        console.error(error);
+        console.error("Error al obtener todos los personajes:", error.message); // Depuración
         res.render('index', { data: [], message: "No se pudieron obtener los datos de la API." });
     }
 });
@@ -27,6 +28,7 @@ app.get('/all', async (req, res) => {
 // Ruta para obtener un personaje por ObjectId
 app.get('/searchById', async (req, res) => {
     const { id } = req.query;
+    console.log("ID recibido:", id); // Depuración
 
     if (!id || id.trim() === "") {
         return res.render('index', { data: [], message: "Por favor, ingresa un ID válido." });
@@ -34,13 +36,14 @@ app.get('/searchById', async (req, res) => {
 
     try {
         const response = await axios.get(`https://starwars-n5ec-developuptcs-projects.vercel.app/${id}`);
-        if (response.data && response.data.length > 0) {
+        console.log("Respuesta de búsqueda por ID:", response.data); // Depuración
+        if (response.data) {
             res.render('index', { data: [response.data], message: null });
         } else {
             res.render('index', { data: [], message: "No se encontró el personaje." });
         }
     } catch (error) {
-        console.error(error);
+        console.error("Error al buscar personaje por ID:", error.message); // Depuración
         res.render('index', { data: [], message: "Ocurrió un error al buscar el personaje." });
     }
 });
@@ -48,6 +51,7 @@ app.get('/searchById', async (req, res) => {
 // Ruta para buscar personajes por nombre
 app.get('/searchByName', async (req, res) => {
     const { name } = req.query;
+    console.log("Nombre recibido:", name); // Depuración
 
     if (!name || name.trim() === "") {
         return res.render('index', { data: [], message: "Por favor, ingresa un nombre para buscar." });
@@ -55,13 +59,14 @@ app.get('/searchByName', async (req, res) => {
 
     try {
         const response = await axios.get(`https://starwars-n5ec-developuptcs-projects.vercel.app/name/${name}`);
+        console.log("Respuesta de búsqueda por nombre:", response.data); // Depuración
         if (response.data && response.data.length > 0) {
             res.render('index', { data: response.data, message: null });
         } else {
             res.render('index', { data: [], message: "No se encontró el personaje." });
         }
     } catch (error) {
-        console.error(error);
+        console.error("Error al buscar personaje por nombre:", error.message); // Depuración
         res.render('index', { data: [], message: "Ocurrió un error al buscar el personaje." });
     }
 });
