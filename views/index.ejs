@@ -11,13 +11,13 @@
 
     <!-- Formulario para buscar por ObjectId -->
     <form action="/searchById" method="get">
-        <input type="text" name="id" placeholder="Buscar por ObjectId">
+        <input type="text" name="id" placeholder="Buscar por ObjectId" required>
         <button type="submit">Buscar por ID</button>
     </form>
 
     <!-- Formulario para buscar por nombre -->
     <form action="/searchByName" method="get">
-        <input type="text" name="name" placeholder="Buscar por Nombre">
+        <input type="text" name="name" placeholder="Buscar por Nombre" required>
         <button type="submit">Buscar por Nombre</button>
     </form>
 
@@ -27,31 +27,29 @@
     </form>
 
     <!-- Mostrar mensaje de error si lo hay -->
-    <% if (typeof message !== 'undefined') { %>
+    <% if (typeof message !== 'undefined' && message) { %>
         <p><%= message %></p>
     <% } %>
 
     <!-- Lista de personajes -->
-    <ul>
-        <% if (data && data.length > 0) { %>
-            <% data.forEach(character => { %>
-                <li>
-                    <strong>Nombre:</strong> <%= character.name %><br>
-                    <strong>ID:</strong> <%= character._id %><br>
-                    <strong>Altura:</strong> <%= character.height %> cm<br>
-                    <strong>Peso:</strong> <%= character.mass %> kg<br>
-                    <strong>Color de cabello:</strong> <%= character.hair_color %><br>
-                    <strong>Color de piel:</strong> <%= character.skin_color %><br>
-                    <strong>Color de ojos:</strong> <%= character.eye_color %><br>
-                    <strong>Año de nacimiento:</strong> <%= character.birth_year %><br>
-                    <strong>Género:</strong> <%= character.gender %><br>
-                    <strong>Mundo natal:</strong> <%= character.homeworld %><br>
-                    <strong>Especie:</strong> <%= character.species %><br><br>
-                </li>
-            <% }) %>
-        <% } else { %>
-            <p>No hay datos disponibles</p>
-        <% } %>
-    </ul>
+    <% if (data && data.length > 0) { %>
+        <% data.forEach(character => { %>
+            <div class="character-info">
+                <p><strong>Nombre:</strong> <%= character.name %></p>
+                <p><strong>ID:</strong> <%= character._id %></p>
+                <p><strong>Altura:</strong> <%= character.height %> cm</p>
+                <p><strong>Peso:</strong> <%= character.mass %> kg</p>
+                <p><strong>Color de cabello:</strong> <%= character.hair_color %></p>
+                <p><strong>Color de piel:</strong> <%= character.skin_color %></p>
+                <p><strong>Color de ojos:</strong> <%= character.eye_color %></p>
+                <p><strong>Año de nacimiento:</strong> <%= character.birth_year %></p>
+                <p><strong>Género:</strong> <%= character.gender %></p>
+                <p><strong>Mundo natal:</strong> <%= character.homeworld %></p>
+                <p><strong>Especie:</strong> <%= character.species %></p>
+            </div>
+        <% }) %>
+    <% } else { %>
+        <p>No hay datos disponibles</p>
+    <% } %>
 </body>
 </html>
