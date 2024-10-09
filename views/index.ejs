@@ -3,74 +3,82 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/style.css">
     <title>API de Star Wars</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 <body>
-    <h1>Personajes de Star Wars</h1>
+    <div class="container mt-5">
+        <h1 class="text-center">Personajes de Star Wars</h1>
 
-    <!-- Formulario para buscar por ObjectId -->
-    <form action="/searchById" method="get">
-        <input type="text" name="id" placeholder="Buscar por ObjectId" required>
-        <button type="submit">Buscar por ID</button>
-    </form>
+        <!-- Formulario para buscar por ObjectId -->
+        <form action="/searchById" method="get" class="form-inline mb-3">
+            <input type="text" name="id" class="form-control mr-2" placeholder="Buscar por ObjectId" required>
+            <button type="submit" class="btn btn-primary">Buscar por ID</button>
+        </form>
 
-    <!-- Formulario para buscar por nombre -->
-    <form action="/searchByName" method="get">
-        <input type="text" name="name" placeholder="Buscar por Nombre" required>
-        <button type="submit">Buscar por Nombre</button>
-    </form>
+        <!-- Formulario para buscar por nombre -->
+        <form action="/searchByName" method="get" class="form-inline mb-3">
+            <input type="text" name="name" class="form-control mr-2" placeholder="Buscar por Nombre" required>
+            <button type="submit" class="btn btn-primary">Buscar por Nombre</button>
+        </form>
 
-    <!-- Formulario para obtener todos los personajes -->
-    <form action="/all" method="get">
-        <button type="submit">Obtener Todos los Personajes</button>
-    </form>
+        <!-- Formulario para obtener todos los personajes -->
+        <form action="/all" method="get" class="mb-3">
+            <button type="submit" class="btn btn-success">Obtener Todos los Personajes</button>
+        </form>
 
-    <!-- Mensaje de error si lo hay -->
-    <% if (typeof message !== 'undefined' && message) { %>
-        <p><%= message %></p>
-    <% } %>
+        <!-- Mensaje de error si lo hay -->
+        <% if (typeof message !== 'undefined' && message) { %>
+            <div class="alert alert-danger" role="alert">
+                <%= message %>
+            </div>
+        <% } %>
 
-    <!-- Tabla para mostrar personajes -->
-    <table border="1">
-        <thead>
-            <tr>
-                <th>Nombre</th>
-                <th>ID</th>
-                <th>Altura (cm)</th>
-                <th>Peso (kg)</th>
-                <th>Color de cabello</th>
-                <th>Color de piel</th>
-                <th>Color de ojos</th>
-                <th>Año de nacimiento</th>
-                <th>Género</th>
-                <th>Mundo natal</th>
-                <th>Especie</th>
-            </tr>
-        </thead>
-        <tbody>
-            <% if (data && data.length > 0) { %>
-                <% data.forEach(character => { %>
-                    <tr>
-                        <td><%= character.name %></td>
-                        <td><%= character._id %></td>
-                        <td><%= character.height %></td>
-                        <td><%= character.mass %></td>
-                        <td><%= character.hair_color %></td>
-                        <td><%= character.skin_color %></td>
-                        <td><%= character.eye_color %></td>
-                        <td><%= character.birth_year %></td>
-                        <td><%= character.gender %></td>
-                        <td><%= character.homeworld %></td>
-                        <td><%= character.species %></td>
-                    </tr>
-                <% }) %>
-            <% } else { %>
+        <!-- Tabla para mostrar personajes -->
+        <table class="table table-bordered mt-4">
+            <thead class="thead-dark">
                 <tr>
-                    <td colspan="11">No hay datos disponibles</td>
+                    <th>Nombre</th>
+                    <th>ID</th>
+                    <th>Altura (cm)</th>
+                    <th>Peso (kg)</th>
+                    <th>Color de cabello</th>
+                    <th>Color de piel</th>
+                    <th>Color de ojos</th>
+                    <th>Año de nacimiento</th>
+                    <th>Género</th>
+                    <th>Mundo natal</th>
+                    <th>Especie</th>
                 </tr>
-            <% } %>
-        </tbody>
-    </table>
+            </thead>
+            <tbody>
+                <% if (data && data.length > 0) { %>
+                    <% data.forEach(character => { %>
+                        <tr>
+                            <td><%= character.name %></td>
+                            <td><%= character._id %></td>
+                            <td><%= character.height %></td>
+                            <td><%= character.mass %></td>
+                            <td><%= character.hair_color %></td>
+                            <td><%= character.skin_color %></td>
+                            <td><%= character.eye_color %></td>
+                            <td><%= character.birth_year %></td>
+                            <td><%= character.gender %></td>
+                            <td><%= character.homeworld %></td>
+                            <td><%= character.species %></td>
+                        </tr>
+                    <% }) %>
+                <% } else { %>
+                    <tr>
+                        <td colspan="11" class="text-center">No hay datos disponibles</td>
+                    </tr>
+                <% } %>
+            </tbody>
+        </table>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>
