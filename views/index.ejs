@@ -26,30 +26,51 @@
         <button type="submit">Obtener Todos los Personajes</button>
     </form>
 
-    <!-- Mostrar mensaje de error si lo hay -->
+    <!-- Mensaje de error si lo hay -->
     <% if (typeof message !== 'undefined' && message) { %>
         <p><%= message %></p>
     <% } %>
 
-    <!-- Lista de personajes -->
-    <% if (data && data.length > 0) { %>
-        <% data.forEach(character => { %>
-            <div class="character-info">
-                <p><strong>Nombre:</strong> <%= character.name %></p>
-                <p><strong>ID:</strong> <%= character._id %></p>
-                <p><strong>Altura:</strong> <%= character.height %> cm</p>
-                <p><strong>Peso:</strong> <%= character.mass %> kg</p>
-                <p><strong>Color de cabello:</strong> <%= character.hair_color %></p>
-                <p><strong>Color de piel:</strong> <%= character.skin_color %></p>
-                <p><strong>Color de ojos:</strong> <%= character.eye_color %></p>
-                <p><strong>Año de nacimiento:</strong> <%= character.birth_year %></p>
-                <p><strong>Género:</strong> <%= character.gender %></p>
-                <p><strong>Mundo natal:</strong> <%= character.homeworld %></p>
-                <p><strong>Especie:</strong> <%= character.species %></p>
-            </div>
-        <% }) %>
-    <% } else { %>
-        <p>No hay datos disponibles</p>
-    <% } %>
+    <!-- Tabla para mostrar personajes -->
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>ID</th>
+                <th>Altura (cm)</th>
+                <th>Peso (kg)</th>
+                <th>Color de cabello</th>
+                <th>Color de piel</th>
+                <th>Color de ojos</th>
+                <th>Año de nacimiento</th>
+                <th>Género</th>
+                <th>Mundo natal</th>
+                <th>Especie</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% if (data && data.length > 0) { %>
+                <% data.forEach(character => { %>
+                    <tr>
+                        <td><%= character.name %></td>
+                        <td><%= character._id %></td>
+                        <td><%= character.height %></td>
+                        <td><%= character.mass %></td>
+                        <td><%= character.hair_color %></td>
+                        <td><%= character.skin_color %></td>
+                        <td><%= character.eye_color %></td>
+                        <td><%= character.birth_year %></td>
+                        <td><%= character.gender %></td>
+                        <td><%= character.homeworld %></td>
+                        <td><%= character.species %></td>
+                    </tr>
+                <% }) %>
+            <% } else { %>
+                <tr>
+                    <td colspan="11">No hay datos disponibles</td>
+                </tr>
+            <% } %>
+        </tbody>
+    </table>
 </body>
 </html>

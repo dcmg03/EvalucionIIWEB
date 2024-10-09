@@ -45,3 +45,20 @@ li {
     border: 1px solid #ddd;
     border-radius: 4px;
 }
+.character-info {
+    display: block; /* Asegúrate de que sea visible */
+}
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th, td {
+    padding: 8px;
+    text-align: left;
+    border: 1px solid #ddd;
+}
+
+th {
+    background-color: #f2f2f2;
+}
